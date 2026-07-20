@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run AutoTask Pro",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/autotaskpro/app.py",
+      "cwd": "${workspaceFolder}/autotaskpro",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

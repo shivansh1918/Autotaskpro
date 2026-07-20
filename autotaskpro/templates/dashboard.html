@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard - AutoTask Pro</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar glass">
+        <img src="/static/images/logo.svg" class="logo-sm" alt="logo">
+        <button id="darkToggle" class="icon-btn">Toggle Dark</button>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <h2>Automation Dashboard</h2>
+        </header>
+
+        <section class="cards">
+          <div class="card glass">
+            <h3>Move JPG Files</h3>
+            <form action="/move" method="post" enctype="multipart/form-data">
+              <input type="file" name="move_files" multiple>
+              <button class="btn">Move JPGs</button>
+            </form>
+            <a class="link" href="/downloads/moved_files_report.txt">Download Report</a>
+          </div>
+
+          <div class="card glass">
+            <h3>Email Extractor</h3>
+            <form action="/extract" method="post" enctype="multipart/form-data">
+              <input type="file" name="text_file" accept=".txt">
+              <button class="btn">Extract Emails</button>
+            </form>
+            <a class="link" href="/downloads/extracted_emails.txt">Download Emails</a>
+          </div>
+
+          <div class="card glass">
+            <h3>Web Scraper</h3>
+            <form action="/scrape" method="post">
+              <input type="url" name="page_url" placeholder="https://example.com" required>
+              <button class="btn">Scrape Page</button>
+            </form>
+            <a class="link" href="/downloads/scraped_content.txt">Download Scraped</a>
+          </div>
+        </section>
+
+        <section class="files glass">
+          <h4>Generated Files</h4>
+          <ul>
+            {% for f in output_files %}
+            <li><a href="/downloads/{{ f }}">{{ f }}</a></li>
+            {% endfor %}
+            {% for f in extracted_files %}
+            <li><a href="/downloads/{{ f }}">{{ f }}</a></li>
+            {% endfor %}
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" aria-hidden="true"></div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
