@@ -2,9 +2,15 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os
 import time
 from werkzeug.utils import secure_filename
-from automation.move_files import move_images
-from automation.extract_emails import extract_emails_from_file
-from automation.scrape_data import scrape_page
+
+try:
+    from .automation.move_files import move_images
+    from .automation.extract_emails import extract_emails_from_file
+    from .automation.scrape_data import scrape_page
+except ImportError:
+    from automation.move_files import move_images
+    from automation.extract_emails import extract_emails_from_file
+    from automation.scrape_data import scrape_page
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, 'uploads')
